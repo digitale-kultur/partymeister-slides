@@ -57,6 +57,18 @@ Route::group([
     });
 });
 
+Route::group([
+	             'as' => 'backend.',
+	             'prefix' => 'backend',
+	             'namespace' => 'Partymeister\Slides\Http\Controllers\Backend',
+	             'middleware' => [
+		             'web',
+	             ],
+             ], function () {
+	Route::get('playlist/{playlist}/json', 'JsonPlaylistController@show');
+	Route::get('playlist/screen/{slideClient}/json', 'JsonPlaylistController@screen');
+});
+
 Route::get('backend/slide_templates/{slide_template}.html', 'Partymeister\Slides\Http\Controllers\Backend\SlideTemplatesController@show')
      ->middleware(['bindings'])
      ->name('backend.slide_templates.show');

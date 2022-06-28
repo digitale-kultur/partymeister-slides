@@ -44,6 +44,18 @@ class ScreenshotHelper
     public function screenshot($url, $file)
     {
         if ($this->driver) {
+	        $options = [
+		        "cmd" => "Emulation.setDefaultBackgroundColorOverride",
+		        "params" => [
+			        "color" => [
+				        "r" => 0,
+				        "g" => 0,
+				        "b" => 0,
+				        "a" => 0
+			        ]
+		        ]
+	        ];
+	        $this->driver->executeCustomCommand("/session/:sessionId/chromium/send_command_and_get_result", "POST", $options);
             $this->driver->get($url);
             $this->driver->takeScreenshot($file);
         }

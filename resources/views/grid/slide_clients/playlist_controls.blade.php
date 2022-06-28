@@ -27,6 +27,9 @@
         </li>
     </ul>
 @endif
+<div class="playlist-{{$record->id}}-cached playlist-json">
+    <a href="/backend/playlist/{{$record->id}}/json" target="_blank" class="slide-clients-json">{{trans('partymeister-slides::backend/slide_clients.json_playlist')}}</a>
+</div>
 <div class="d-none playlist-{{$record->id}}-cached playlist-cached">
     <strong>{{trans('partymeister-slides::backend/slide_clients.cached')}}</strong>
 </div>
