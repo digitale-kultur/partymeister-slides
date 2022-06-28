@@ -37,22 +37,27 @@ class CommunicationController extends Controller
             return response()->json(['message' => 'No slide client active'], 400);
         }
 
+	    $playlistId = $request->get('playlist_id');
         switch ($client->type) {
             case 'screens':
                 $result = XMLService::send('playlist', $request->all());
                 if (! $result) {
                     return response()->json(['result' => $result], 400);
                 } else {
+	                $client->playlist_id = $playlistId;
+	                $client->save();
                     return response()->json(['result' => $result]);
                 }
                 break;
             case 'slidemeister-web':
-                $playlist = Playlist::find($request->get('playlist_id'));
+	            $playlist = Playlist::find($playlistId);
                 if (is_null($playlist)) {
                     return response()->json(['message' => 'Playlist not found'], 400);
                 }
                 event(new PlaylistRequest($playlist, $request->get('callbacks')));
 
+	            $client->playlist_id = $playlistId;
+	            $client->save();
                 return response()->json(['result' => 'Playlist event sent']);
                 break;
         }

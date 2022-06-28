@@ -107,4 +107,12 @@ class SlideClient extends Model
     {
         return $this->morphMany(FileAssociation::class, 'model');
     }
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function playlist()
+	{
+		return $this->belongsTo(Playlist::class);
+	}
 }
