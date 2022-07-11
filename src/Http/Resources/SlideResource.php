@@ -75,11 +75,11 @@ class SlideResource extends BaseResource
             'slide_template'      => new SlideTemplateResource($this->slide_template),
             'slide_type'          => $this->slide_type,
             'category'            => new CategoryResource($this->category),
-            'definitions'         => $this->definitions,
+            'definitions'         => json_decode($this->definitions),
             'cached_html_preview' => $this->cached_html_preview,
             'cached_html_final'   => $this->cached_html_final,
             'file_final'          => new MediaResource($this->getFirstMedia('final')),
-            'file_preview'        => new MediaResource($this->getFirstMedia('preview')),
+            'file_preview'        => new MediaResource($this->getFirstMedia('preview'))
         ];
     }
 }
