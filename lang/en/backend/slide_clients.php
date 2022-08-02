@@ -27,7 +27,7 @@ return [
     'cached'                      => 'Cached',
     'playing'                     => 'Playing',
     'playnow'                     => 'Play NOW',
-    'callback_question'           => 'Do you really want to start this playlist with callbacks enabled?! Denk doch mal an die Kinder!',
+    'callback_question'           => 'Do you really want to start this playlist with callbacks enabled?!',
     'type'                        => 'Type',
     'types'                       => [
         'screens'          => 'Screens',
