@@ -138,9 +138,11 @@ class PlaylistsController extends Controller
                 ->withInput();
         }
 
-        PlaylistService::updateWithForm($record, $request, $form);
+        $playlist = PlaylistService::updateWithForm($record, $request, $form);
 
         flash()->success(trans('partymeister-slides::backend/playlists.updated'));
+
+	    event(new \Partymeister\Slides\Events\PlaylistRequest( $playlist, $request->get( 'callbacks')));
 
         return redirect('backend/playlists');
     }
