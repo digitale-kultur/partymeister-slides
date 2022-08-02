@@ -143,7 +143,7 @@ class PlaylistsController extends Controller
         flash()->success(trans('partymeister-slides::backend/playlists.updated'));
 
 		if($record) {
-			event(new \Partymeister\Slides\Events\PlaylistRequest( $record, $request->get( 'callbacks')));
+			event(new \Partymeister\Slides\Events\PlaylistRefreshRequest());
 		}
 
         return redirect('backend/playlists');
