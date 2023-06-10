@@ -14,7 +14,7 @@ class AddCompetitionIdToPlaylist extends Migration
 	public function up()
 	{
 		Schema::table('playlists', function (Blueprint $table) {
-			$table->integer('competition_id')->after('is_competition')->unsigned()->nullable();
+			$table->bigInteger('competition_id')->after('is_competition')->unsigned()->nullable();
 			$table->foreign('competition_id')->references('id')->on('competitions')->onDelete('set null');
 		});
 	}
